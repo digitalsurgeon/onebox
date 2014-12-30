@@ -18,14 +18,13 @@ module Onebox
         result = {
           link: link,
           title: raw.css(".document-title div").inner_text,
-          developer: raw.css(".document-subtitle.primary").inner_text,
+          publish_date: raw.css("div[itemprop=datePublished]").inner_text,
+          genre: raw.css("span[itemprop=genre]").inner_text,
           image: raw.css(".cover-image").first["src"],
-          description: raw.css(".text-body div").inner_text[0..DEFAULTS[:MAX_DESCRIPTION_CHARS]].chop + "...",
-          price: raw.css(".price.buy meta[itemprop=price]").first["content"]
+          synopsis: raw.css("meta[name=Description]").first["content"],
+          price_buy: raw.css(".price.buy meta[itemprop=price]").first["content"],
+          price_rent: raw.css(".price.buy meta[itemprop=price]")[2]["content"]
         }
-        if result[:price].to_i <= 0 then
-            result[:price] = "Free"
-        end
         result
       end
     end
