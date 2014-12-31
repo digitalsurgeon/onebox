@@ -21,9 +21,7 @@ module Onebox
           publish_date: raw.css("div[itemprop=datePublished]").inner_text,
           genre: raw.css("span[itemprop=genre]").inner_text,
           image: raw.css(".cover-image").first["src"],
-          synopsis: raw.css("meta[name=Description]").first["content"],
-          price_buy: raw.css(".price.buy meta[itemprop=price]").first["content"],
-          price_rent: raw.css(".price.buy meta[itemprop=price]")[2]["content"]
+          synopsis: raw.css("meta[name=Description]").first["content"]
         }
         result
       end
